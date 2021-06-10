@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this@MainActivity, MovieListActivity::class.java)
             startActivity(intent)
+            finish()
         }, 3000)
     }
 }

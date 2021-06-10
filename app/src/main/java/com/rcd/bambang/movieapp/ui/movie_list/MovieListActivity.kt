@@ -1,8 +1,11 @@
 package com.rcd.bambang.movieapp.ui.movie_list
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.GridLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
@@ -20,6 +23,8 @@ class MovieListActivity : AppCompatActivity() {
 
     lateinit var movieListRepository: MovieListRepository
 
+    private var doubleBackToExitApp = false
+
     private val binding by lazy {
         DataBindingUtil.setContentView<ActivityMovieListBinding>(
             this@MovieListActivity,
@@ -30,6 +35,9 @@ class MovieListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "Popular Movies"
 
         val apiService: TheMovieDBInterface = TheMovieDBClient.getClient()
 
@@ -75,5 +83,23 @@ class MovieListActivity : AppCompatActivity() {
             }
 
         })[MovieListViewModel::class.java]
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitApp) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitApp = true
+        Toast.makeText(
+            this@MovieListActivity,
+            "Please press Back again to exit the app",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            doubleBackToExitApp = false
+        }, 2000)
     }
 }

@@ -32,6 +32,11 @@ class MovieDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "Movie Detail"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val movieId = intent.extras?.get("movie_id") as Int
         val apiService: TheMovieDBInterface = TheMovieDBClient.getClient()
         repository = MovieDetailsRepository(apiService)
@@ -74,6 +79,11 @@ class MovieDetailsActivity : AppCompatActivity() {
             }
 
         })[MovieDetailsViewModel::class.java]
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }
