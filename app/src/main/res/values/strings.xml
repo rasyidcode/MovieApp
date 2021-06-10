@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="text_connection_problem">Connection Prolem</string>
+    <string name="label_movie_detail_release_date">Release Date : </string>
+    <string name="label_movie_detail_rating">Rating : </string>
+    <string name="label_movie_detail_runtime">Runtime : </string>
+    <string name="label_movie_detail_budget">Budget : </string>
+    <string name="label_movie_detail_revenue">Revenue : </string>
+    <string name="label_movie_detail_overview">Overview : </string>
+    <string name="text_movie_detail_movie_info">Movie Info</string>
+    <string name="movie_list_text_error">Connection Problem!</string>
+</resources>
